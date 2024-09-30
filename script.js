@@ -22,8 +22,26 @@ document.getElementById('addTask').addEventListener('click', function() {
         }
     });
 
+
+    let taskTextNode = document.createElement('span');
+    taskTextNode.textContent = `${taskText} \nDue: ${dueDate}`;
+    
+    let priorityNode = document.createElement('span');
+
+    priorityNode.textContent = ` \nPriority: ${priority}`;
+    if (priority === 'High') {
+        priorityNode.style.color = 'red';
+    } else if (priority === 'Medium') {
+        priorityNode.style.color = 'Orange';
+    } else if (priority === 'Low') {
+        priorityNode.style.color = 'blue';
+    }
+
+
     li.appendChild(checkbox);
-    li.appendChild(document.createTextNode(` ${taskText} - Due: ${dueDate} - Priority: ${priority}`));
+    li.appendChild(taskTextNode);
+    li.appendChild(priorityNode);
+    
 
     let deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
@@ -35,8 +53,8 @@ document.getElementById('addTask').addEventListener('click', function() {
     li.appendChild(deleteBtn);
     document.getElementById('taskList').appendChild(li);
 
-    document.getElementById('task').value = '';  // Clear input
-    document.getElementById('dueDate').value = '';  // Clear date
+    document.getElementById('task').value = '';  
+    document.getElementById('dueDate').value = '';  
 });
 
 document.getElementById('clearTasks').addEventListener('click', function() {
